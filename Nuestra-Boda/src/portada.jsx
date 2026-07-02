@@ -21,25 +21,32 @@ export default function Portada() {
     if (cantidad) setPases(parseInt(cantidad));
   }, []);
 
-  const iniciarExperiencia = () => {
-    setAbrirSobre(true);
+  const iniciarExperiencia = async () => {
+  if (abrirSobre) return;
 
-    setTimeout(() => {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.45;
-        audioRef.current.play().catch(() => {});
-      }
+  setAbrirSobre(true);
 
-      setIntroActiva(false);
-      setMostrarContenido(true);
-    }, 1800);
-  };
+  if (audioRef.current) {
+    try {
+      audioRef.current.volume = 0.45;
+      audioRef.current.muted = false;
+      await audioRef.current.play();
+    } catch (error) {
+      console.log("El navegador bloqueó el audio:", error);
+    }
+  }
+
+  setTimeout(() => {
+    setIntroActiva(false);
+    setMostrarContenido(true);
+  }, 1800);
+};
 
   return (
     <div className="relative w-full overflow-hidden bg-black text-white">
-      <audio ref={audioRef} loop>
-        <source src="/TylerShaw.mp3" type="audio/mpeg" />
-      </audio>
+      <audio ref={audioRef} loop playsInline preload="auto">
+  <source src="/TylerShaw.mp3" type="audio/mpeg" />
+</audio>
 
       <AnimatePresence>
         {introActiva && (
@@ -154,7 +161,7 @@ export default function Portada() {
                 </h1>
 
                 <p className="font-cursiveDancing text-[24px] sm:text-[44px] md:text-[54px] leading-none text-[#E9D7A6] -mt-1 sm:-mt-2">
-                  Guadalupe
+                  Villagómez
                 </p>
 
                 <div className="my-1 sm:my-3 flex items-center justify-center">
@@ -317,7 +324,7 @@ export default function Portada() {
 
                     <div className="absolute inset-0 rounded-full bg-black border-2 border-[#C9A44C] shadow-[0_0_28px_rgba(201,164,76,0.65)] overflow-hidden">
                       <img
-                        src="/SW.png"
+                        src="/selloimperio.png"
                         alt="Logo Star Wars"
                         className="w-full h-full object-cover"
                         draggable={false}
