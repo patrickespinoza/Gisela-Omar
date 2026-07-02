@@ -2,410 +2,150 @@
 
 import { motion } from "framer-motion";
 
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 70,
+const eventos = [
+  {
+    hora: "13:30",
+    titulo: "Ceremonia Religiosa",
+    descripcion: "El inicio de nuestra historia ante Dios y nuestros seres queridos.",
   },
+  {
+    hora: "16:00",
+    titulo: "Recepción",
+    lugar: "Salon Jardín Loma Linda",
+    descripcion: "Les recibiremos con alegría para compartir juntos este día tan especial.",
+  },
+  {
+    hora: "16:30",
+    titulo: "Ceremonia Civil",
+    lugar: "Banquete especial",
+    descripcion: "Uniremos nuestras vidas ante la ley, sellando para siempre nuestro compromiso de amor.",
+  },
+  {
+    hora: "17:00",
+    titulo: "Drunch",
+    descripcion: "Disfrutemos de una tarde llena de sabores, sonrisas y momentos inolvidables.",
+  },
+  {
+    hora: "18:30",
+    titulo: "Fiesta",
+    descripcion: "Que la música, el baile y la felicidad nos acompañen para celebrar el comienzo de nuestra nueva vida juntos.",
+  },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 55 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1.1,
+      duration: 1,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
 
-const events = [
-  {
-    time: "18:00",
-    title: "Ceremonia",
-    description: "Ceremonia civil con nuestros seres queridos",
-    icon: "💍",
-  },
-  {
-    time: "19:30",
-    title: "Recepción",
-    description: "Bienvenida con cóctel y música en vivo",
-    icon: "🥂",
-  },
-  {
-    time: "21:00",
-    title: "Cena",
-    description: "Banquete con menú especialmente diseñado",
-    icon: "🍽️",
-  },
-  {
-    time: "23:00",
-    title: "Fiesta",
-    description: "¡A bailar hasta que amanezca!",
-    icon: "🎉",
-  },
-];
-
-const ItinerarioTimelinePremium = () => {
+export default function ItinerarioTimelinePremium() {
   return (
-    <section
-      className="relative overflow-hidden py-24 md:py-32 px-5 sm:px-6"
-      style={{
-        background: `
-          radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 18%),
-          radial-gradient(circle at bottom right, rgba(255,255,255,0.04), transparent 22%),
-          linear-gradient(
-            145deg,
-            #f8f4ee 0%,
-            #efe4d2 38%,
-            #dcc4a3 100%
-          )
-        `,
-      }}
-    >
+    <section className="relative overflow-hidden bg-[#4F5A35] px-5 py-24 sm:py-32">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#6F7756] via-[#4F5A35] to-[#252B1E]" />
 
-      {/* GLOW */}
+      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+
       <motion.div
-        className="absolute w-[500px] h-[500px] rounded-full blur-3xl opacity-20"
-        style={{
-          background: "rgba(212,175,55,0.16)",
-          top: "-140px",
-          right: "-120px",
-        }}
-        animate={{
-          scale: [1, 1.12, 1],
-          opacity: [0.15, 0.24, 0.15],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        className="absolute -top-32 -right-28 w-[380px] h-[380px] rounded-full bg-[#C9A44C]/20 blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.14, 0.28, 0.14] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* TEXTURA */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              45deg,
-              rgba(0,0,0,0.08) 0px,
-              rgba(0,0,0,0.08) 1px,
-              transparent 1px,
-              transparent 6px
-            )
-          `,
-        }}
+      <motion.div
+        className="absolute -bottom-32 -left-28 w-[380px] h-[380px] rounded-full bg-white/10 blur-3xl"
+        animate={{ scale: [1, 1.18, 1], opacity: [0.08, 0.18, 0.08] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* TITULOS */}
-      <div className="relative z-10 text-center mb-20">
-
-        <motion.p
-          className="uppercase text-[11px] tracking-[0.3em] md:tracking-[0.55em]"
-          style={{
-            color: "#9b7b52",
-          }}
-          animate={{
-            letterSpacing: ["0.3em", "0.45em", "0.3em"],
-            opacity: [0.7, 1, 0.7],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
-        >
-          ITINERARIO
-        </motion.p>
-
-        <motion.h1
-          className="mt-6 text-[34px] sm:text-[48px] md:text-[72px] leading-none font-cursiveDancing"
-          style={{
-  color: "#4a3422",
-  textShadow: `
-    0 2px 12px rgba(255,255,255,0.45),
-    0 4px 18px rgba(0,0,0,0.08)
-  `,
-  letterSpacing: "0.02em",
-}}
-          animate={{
-            opacity: [0.92, 1, 0.92],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-          }}
-        >
-          Nuestro Día
-        </motion.h1>
-
-        {/* DETALLE */}
+      <div className="relative z-10 mx-auto max-w-5xl">
+        {/* TITULO */}
         <motion.div
-          className="relative flex justify-center items-center my-10"
-          animate={{
-            opacity: [0.7, 1, 0.7],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-16"
         >
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
+            Itinerario
+          </p>
 
-          <motion.div
-            className="h-[1px]"
-            style={{
-              width: "90px",
-              background:
-                "linear-gradient(to right, transparent, rgba(180,140,80,0.7))",
-            }}
-            animate={{
-              width: ["70px", "95px", "70px"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-          />
+          <h2 className="font-cursiveDancing text-[54px] sm:text-[78px] md:text-[92px] text-[#F8F4EB] leading-none">
+            Nuestro Día
+          </h2>
 
-          <motion.div
-            className="relative mx-5"
-            animate={{
-              rotate: [0, 4, -4, 0],
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-            }}
-          >
-
-            <div className="absolute inset-0 blur-xl bg-[#d4af37]/20 scale-150 rounded-full" />
-
-            <div
-              className="relative w-3 h-3 rotate-45"
-              style={{
-                background: `
-                  linear-gradient(
-                    135deg,
-                    #d4af37 0%,
-                    #b38728 45%,
-                    #7a5a16 100%
-                  )
-                `,
-              }}
-            />
-          </motion.div>
-
-          <motion.div
-            className="h-[1px]"
-            style={{
-              width: "90px",
-              background:
-                "linear-gradient(to left, transparent, rgba(180,140,80,0.7))",
-            }}
-            animate={{
-              width: ["70px", "95px", "70px"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-          />
-
+          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6" />
         </motion.div>
 
-      </div>
+        {/* CONTENEDOR */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="relative rounded-[38px] sm:rounded-tl-[90px] sm:rounded-br-[90px] border border-[#C9A44C]/50 bg-[#F8F4EB] shadow-[0_35px_100px_rgba(0,0,0,0.35)] overflow-hidden px-5 py-12 sm:px-10 sm:py-16"
+        >
+          <div className="absolute inset-4 border border-[#C9A44C]/25 rounded-[28px] sm:rounded-tl-[76px] sm:rounded-br-[76px] pointer-events-none" />
 
-      {/* TIMELINE */}
-      <div className="relative max-w-6xl mx-auto">
-
-        {/* LINEA CENTRAL */}
-        <div
-          className="absolute left-1/2 top-0 hidden md:block w-[2px] h-full -translate-x-1/2"
-          style={{
-            background: `
-              linear-gradient(
-                to bottom,
-                transparent,
-                rgba(180,140,80,0.45),
-                transparent
-              )
-            `,
-          }}
-        />
-
-        <div className="flex flex-col gap-14 md:gap-24">
-
-          {events.map((event, index) => {
-            const isLeft = index % 2 === 0;
-
-            return (
+          <div className="relative z-10 flex flex-col gap-0">
+            {eventos.map((evento, index) => (
               <motion.div
                 key={index}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.9,
+                  delay: index * 0.12,
+                  ease: "easeOut",
+                }}
                 viewport={{ once: true }}
-                className={`
-                  relative flex w-full
-                  ${isLeft ? "md:justify-start" : "md:justify-end"}
-                  justify-center
-                `}
+                className="relative"
               >
+                <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-6 md:gap-10 py-9 sm:py-11">
+                  {/* HORA */}
+                  <div className="flex md:flex-col items-center justify-center md:justify-start gap-4 md:gap-3 text-center">
+                    <div className="w-3 h-3 rotate-45 bg-[#C9A44C] shadow-[0_0_18px_rgba(201,164,76,0.55)]" />
 
-                {/* PUNTO CENTRAL */}
-                <motion.div
-                  className="absolute left-1/2 top-1/2 hidden md:flex -translate-x-1/2 -translate-y-1/2 z-20"
-                  animate={{
-                    scale: [1, 1.15, 1],
-                    opacity: [0.7, 1, 0.7],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                  }}
-                >
-
-                  <div className="relative">
-
-                    <div className="absolute inset-0 blur-xl bg-[#d4af37]/30 scale-150 rounded-full" />
-
-                    <div
-                      className="relative w-5 h-5 rounded-full border border-white/40"
+                    <p
+                      className="text-[34px] sm:text-[42px] md:text-[46px] leading-none font-light text-[#4F5A35]"
                       style={{
-                        background: `
-                          linear-gradient(
-                            135deg,
-                            #d4af37,
-                            #9b6b1d
-                          )
-                        `,
-                        boxShadow: `
-                          0 0 20px rgba(212,175,55,0.4),
-                          inset 0 1px 0 rgba(255,255,255,0.4)
-                        `,
+                        fontFamily: "serif",
                       }}
-                    />
-
+                    >
+                      {evento.hora}
+                    </p>
                   </div>
 
-                </motion.div>
+                  {/* INFO */}
+                  <div className="text-center md:text-left">
+                    <p className="text-[25px] uppercase tracking-[0.45em] text-[#C9A44C] mb-3">
+                      {evento.titulo}
+                    </p>
 
-                {/* CARD */}
-                <motion.div
-                  whileHover={{
-                    y: -8,
-                    scale: 1.02,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                  }}
-                  className="
-                    relative overflow-hidden
-                    w-full md:w-[46%]
-                    rounded-[34px]
-                    px-8 py-10
-                  "
-                  style={{
-                    background: `
-                      linear-gradient(
-                        145deg,
-                        rgba(255,255,255,0.72),
-                        rgba(255,255,255,0.35)
-                      )
-                    `,
-                    backdropFilter: "blur(18px)",
-                    border: "1px solid rgba(255,255,255,0.4)",
-                    boxShadow: `
-                      0 25px 60px rgba(0,0,0,0.12),
-                      inset 0 1px 0 rgba(255,255,255,0.6)
-                    `,
-                  }}
-                >
+                    <h3 className="font-cursiveDancing text-[15px] sm:text-[30px] text-[#4F5A35] leading-none mb-3">
+                      {evento.lugar}
+                    </h3>
 
-                  {/* BRILLO */}
-                  <div
-                    className="absolute top-0 left-0 w-20 h-full opacity-10"
-                    style={{
-                      background:
-                        "linear-gradient(to right, rgba(255,255,255,0.9), transparent)",
-                      transform: "skewX(-20deg)",
-                    }}
-                  />
+                    <p className="font-serif text-[15px] sm:text-[18px] leading-relaxed text-[#5B6247] max-w-2xl mx-auto md:mx-0">
+                      {evento.descripcion}
+                    </p>
+                  </div>
+                </div>
 
-                  {/* HORA */}
-                  <motion.p
-                    className="uppercase text-[11px] tracking-[0.4em]"
-                    style={{
-                      color: "#9b7b52",
-                    }}
-                    animate={{
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                    }}
-                  >
-                    {event.time}
-                  </motion.p>
-
-                  {/* TITULO */}
-                  <h2
-                    className="mt-5 text-[30px] md:text-[40px] font-cursiveDancing"
-                    style={{
-                      background: `
-                        linear-gradient(
-                          180deg,
-                          #d4af37 0%,
-                          #b38728 45%,
-                          #7a5a16 100%
-                        )
-                      `,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    {event.title}
-                  </h2>
-
-                  {/* LINEA */}
-                  <motion.div
-                    className="w-20 h-[1px] my-6"
-                    style={{
-                      background:
-                        "linear-gradient(to right, rgba(180,140,80,0.8), transparent)",
-                    }}
-                    animate={{
-                      width: ["60px", "90px", "60px"],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                    }}
-                  />
-
-                  {/* TEXTO */}
-                  <p
-                    className="text-[15px] leading-relaxed"
-                    style={{
-                      color: "#6f5a40",
-                    }}
-                  >
-                    {event.description}
-                  </p>
-
-                </motion.div>
-
+                {index !== eventos.length - 1 && (
+                  <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C]/50 to-transparent" />
+                )}
               </motion.div>
-            );
-          })}
-
-        </div>
-
+            ))}
+          </div>
+        </motion.div>
       </div>
-
     </section>
   );
-};
-
-export default ItinerarioTimelinePremium;
+}

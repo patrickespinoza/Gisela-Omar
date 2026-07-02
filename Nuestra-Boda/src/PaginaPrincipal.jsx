@@ -8,6 +8,7 @@ import Confirmacion from "./componentes-encabezado/Confirmacion";
 import FrasePremium from "./componentes-encabezado/FrasePrincipal";
 import EventoDireccion from "./componentes-encabezado/Ubicacion";
 import DressCodePremium from "./componentes-encabezado/codigovestimenta";
+import NoviosPadres from "./componentes-encabezado/Novios";
 
 
 export default function PaginaPrincipal() {
@@ -47,6 +48,7 @@ export default function PaginaPrincipal() {
 
 <FrasePremium/>
 
+<NoviosPadres/>
 {/* Direccion del evento*/}
 
 <EventoDireccion/>
