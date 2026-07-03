@@ -3,38 +3,38 @@ import { useState, useRef, useEffect } from "react";
 import Confetti from "react-confetti";
 import html2canvas from "html2canvas";
 
-// 🔥 URL GOOGLE SHEETS
-const API_URL = "https://script.google.com/macros/s/AKfycbxQTHIUXU3wWSw_mg7wvwbjwLbzskGcgGaGKzuY_yUK1r-RfPfXtSB7WD4CfZ6W7f5QJg/exec";
+const API_URL =
+  "https://script.google.com/macros/s/AKfycbxQTHIUXU3wWSw_mg7wvwbjwLbzskGcgGaGKzuY_yUK1r-RfPfXtSB7WD4CfZ6W7f5QJg/exec";
 
 const preguntas = [
   {
-    pregunta: "¿Dónde se conocieron Allison y David?",
+    pregunta: "¿Dónde se conocieron Gisela y Omar?",
     opciones: ["En la Universidad", "En una Fiesta", "En el trabajo", "Por una app", "En un viaje"],
-    correcta: 0
+    correcta: 0,
   },
   {
     pregunta: "¿Quién dijo 'te amo' primero?",
-    opciones: ["Allison", "David", "Ambos", "Nadie", "Accidente 😅"],
-    correcta: 1
+    opciones: ["Gisela", "Omar", "Ambos", "Nadie", "Accidente"],
+    correcta: 1,
   },
   {
     pregunta: "¿Comida favorita?",
     opciones: ["Pizza", "Sushi", "Tacos", "Pasta", "Hamburguesas"],
-    correcta: 2
+    correcta: 2,
   },
   {
     pregunta: "¿Primera cita?",
     opciones: ["Cine", "Restaurante", "Parque", "Café", "Playa"],
-    correcta: 3
+    correcta: 3,
   },
   {
     pregunta: "¿Quién es más puntual?",
-    opciones: ["Allison", "David", "Ambos", "Ninguno 😂", "Depende"],
-    correcta: 0
-  }
+    opciones: ["Gisela", "Omar", "Ambos", "Ninguno", "Depende"],
+    correcta: 0,
+  },
 ];
 
-const Preguntas = () => {
+export default function Preguntas() {
   const [nombre, setNombre] = useState("");
   const [mostrarNombre, setMostrarNombre] = useState(true);
   const [paso, setPaso] = useState(0);
@@ -44,33 +44,25 @@ const Preguntas = () => {
   const [ranking, setRanking] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
 
-  const resultadoRef = useRef();
+  const resultadoRef = useRef(null);
 
-  // 📤 enviar resultado
-const enviarResultado = async () => {
-  try {
-    await fetch(API_URL, {
-      method: "POST",
-      mode: "no-cors", // ✅ IMPORTANTE
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        nombre: nombre,
-        score: score
-      })
-    });
-  } catch (e) {
-    console.log("Error enviando:", e);
-  }
-};
+  const enviarResultado = async () => {
+    try {
+      await fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, score }),
+      });
+    } catch (e) {
+      console.log("Error enviando:", e);
+    }
+  };
 
-  // 📥 obtener ranking
   const obtenerRanking = async () => {
     try {
       const res = await fetch(API_URL);
       const data = await res.json();
-
       const ordenado = data.sort((a, b) => b.score - a.score);
       setRanking(ordenado.slice(0, 3));
     } catch (e) {
@@ -78,18 +70,15 @@ const enviarResultado = async () => {
     }
   };
 
-  // 🔥 flujo final (TIEMPO REAL)
   useEffect(() => {
     if (terminado) {
       const flujoFinal = async () => {
         await enviarResultado();
 
-        // ⏳ esperar a que Google Sheets guarde
         setTimeout(async () => {
           await obtenerRanking();
         }, 1200);
 
-        // 🎉 confetti seguro
         setShowConfetti(true);
       };
 
@@ -97,17 +86,16 @@ const enviarResultado = async () => {
     }
   }, [terminado]);
 
-  // 🎯 lógica respuestas
   const manejarRespuesta = (index) => {
     if (paso === 0 && !nombre.trim()) {
-      alert("Escribe tu nombre 😊");
+      alert("Escribe tu nombre");
       return;
     }
 
     setSeleccion(index);
 
     if (index === preguntas[paso].correcta) {
-      setScore(prev => prev + 1);
+      setScore((prev) => prev + 1);
     }
 
     setTimeout(() => {
@@ -123,8 +111,9 @@ const enviarResultado = async () => {
     }, 700);
   };
 
-  // 📸 guardar imagen
   const guardarResultado = async () => {
+    if (!resultadoRef.current) return;
+
     const canvas = await html2canvas(resultadoRef.current);
     const link = document.createElement("a");
     link.download = "resultado.png";
@@ -133,114 +122,151 @@ const enviarResultado = async () => {
   };
 
   return (
-    <div className="flex justify-center relative">
-      <div className="w-full max-w-xl">
+    <section className="relative overflow-hidden bg-[#4F5A35] px-5 py-24 sm:py-32">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#6F7756] via-[#4F5A35] to-[#252B1E]" />
 
-        {/* 🎉 CONFETTI FIX */}
+      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+
+      <motion.div
+        className="absolute -top-32 -left-28 w-[380px] h-[380px] rounded-full bg-[#C9A44C]/20 blur-3xl"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.14, 0.28, 0.14] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
         {showConfetti && (
           <Confetti
             width={window.innerWidth}
             height={window.innerHeight}
-            numberOfPieces={300}
+            numberOfPieces={280}
             recycle={false}
           />
         )}
+
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
+          Juego para invitados
+        </p>
+
+        <h2 className="font-cursiveDancing text-[54px] sm:text-[78px] text-[#F8F4EB] leading-none">
+          ¿Cuánto nos conoces?
+        </h2>
+
+        <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6 mb-12" />
 
         <AnimatePresence mode="wait">
           {!terminado ? (
             <motion.div
               key={paso}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 45 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              className="flex flex-col items-center gap-5 py-10 bg-gray-50 rounded-2xl shadow-md"
+              exit={{ opacity: 0, y: -45 }}
+              transition={{ duration: 0.7 }}
+              className="relative overflow-hidden rounded-[36px] sm:rounded-tl-[90px] sm:rounded-br-[90px] border border-[#C9A44C]/50 bg-[#F8F4EB] shadow-[0_35px_100px_rgba(0,0,0,0.35)] px-6 py-12 sm:px-12 sm:py-14"
             >
-              <h1 className="text-2xl font-bold">¿CUÁNTO NOS CONOCES?</h1>
+              <div className="absolute inset-4 border border-[#C9A44C]/25 rounded-[28px] sm:rounded-tl-[76px] sm:rounded-br-[76px] pointer-events-none" />
 
-              <p className="text-blue-400">
-                PREGUNTA {paso + 1} DE {preguntas.length}
-              </p>
+              <div className="relative z-10">
+                <p className="text-[10px] uppercase tracking-[0.45em] text-[#6F7756] mb-5">
+                  Pregunta {paso + 1} de {preguntas.length}
+                </p>
 
-              {mostrarNombre && (
-                <input
-                  type="text"
-                  value={nombre}
-                  onChange={(e) => setNombre(e.target.value)}
-                  placeholder="Tu nombre..."
-                  className="px-4 py-2 border rounded-lg w-72 text-center"
-                />
-              )}
+                {mostrarNombre && (
+                  <input
+                    type="text"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Tu nombre..."
+                    className="mb-8 w-full max-w-sm rounded-full border border-[#C9A44C]/45 bg-white px-5 py-3 text-center text-[#2F3624] outline-none focus:border-[#4F5A35]"
+                  />
+                )}
 
-              <h2>{preguntas[paso].pregunta}</h2>
+                <h3 className="font-serif text-[24px] sm:text-[34px] leading-snug text-[#2F3624] mb-8">
+                  {preguntas[paso].pregunta}
+                </h3>
 
-              <div className="flex flex-col gap-3 w-full items-center">
-                {preguntas[paso].opciones.map((opcion, index) => (
-                  <button
-                    key={index}
-                    onClick={() => manejarRespuesta(index)}
-                    className={`w-80 px-4 py-3 rounded-xl border transition-all
-                      ${seleccion === index
-                        ? "bg-pink-400 text-white scale-105"
-                        : "bg-white hover:bg-pink-100"}`}
-                  >
-                    {opcion}
-                  </button>
-                ))}
+                <div className="flex flex-col gap-3 items-center">
+                  {preguntas[paso].opciones.map((opcion, index) => (
+                    <motion.button
+                      key={index}
+                      onClick={() => manejarRespuesta(index)}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className={`w-full max-w-md px-5 py-4 rounded-full border transition-all text-[14px] sm:text-[16px] ${
+                        seleccion === index
+                          ? "bg-[#4F5A35] text-[#F8F4EB] border-[#C9A44C]"
+                          : "bg-white text-[#2F3624] border-[#C9A44C]/35 hover:bg-[#F3EAD8]"
+                      }`}
+                    >
+                      {opcion}
+                    </motion.button>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ) : (
             <motion.div
               ref={resultadoRef}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex flex-col items-center gap-6 py-10 bg-white rounded-2xl shadow-xl"
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative overflow-hidden rounded-[36px] sm:rounded-tl-[90px] sm:rounded-br-[90px] border border-[#C9A44C]/50 bg-[#F8F4EB] shadow-[0_35px_100px_rgba(0,0,0,0.35)] px-6 py-12 sm:px-12 sm:py-14"
             >
-              <h2 className="text-2xl font-bold">
-                🎉 {nombre}, acertaste {score} de {preguntas.length}
-              </h2>
+              <h3 className="font-cursiveDancing text-[42px] sm:text-[58px] text-[#4F5A35] leading-none mb-5">
+                ¡Gracias, {nombre}!
+              </h3>
 
-              {/* 🏆 PODIO TIEMPO REAL */}
+              <p className="font-serif text-[22px] sm:text-[30px] text-[#2F3624]">
+                Acertaste {score} de {preguntas.length}
+              </p>
+
+              <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto my-9" />
+
               <div className="flex items-end justify-center gap-4 mt-6">
-
                 {ranking[1] && (
-                  <motion.div initial={{ y: 50 }} animate={{ y: 0 }}>
-                    <div className="bg-gray-300 h-24 w-20 rounded-t-xl flex items-center justify-center">2</div>
-                    <p>{ranking[1].nombre}</p>
-                    <span>{ranking[1].score}</span>
-                  </motion.div>
+                  <div>
+                    <div className="bg-[#D8D1C2] h-24 w-20 rounded-t-2xl flex items-center justify-center text-[#4F5A35] font-bold">
+                      2
+                    </div>
+                    <p className="text-[#2F3624] mt-2">{ranking[1].nombre}</p>
+                    <span className="text-[#6F7756]">{ranking[1].score}</span>
+                  </div>
                 )}
 
                 {ranking[0] && (
-                  <motion.div initial={{ y: 80 }} animate={{ y: 0 }}>
-                    <div className="bg-yellow-400 h-32 w-24 rounded-t-xl flex items-center justify-center">🏆</div>
-                    <p className="font-bold">{ranking[0].nombre}</p>
-                    <span>{ranking[0].score}</span>
-                  </motion.div>
+                  <div>
+                    <div className="bg-[#C9A44C] h-32 w-24 rounded-t-2xl flex items-center justify-center text-white text-2xl">
+                      🏆
+                    </div>
+                    <p className="font-bold text-[#2F3624] mt-2">
+                      {ranking[0].nombre}
+                    </p>
+                    <span className="text-[#6F7756]">{ranking[0].score}</span>
+                  </div>
                 )}
 
                 {ranking[2] && (
-                  <motion.div initial={{ y: 50 }} animate={{ y: 0 }}>
-                    <div className="bg-orange-300 h-20 w-20 rounded-t-xl flex items-center justify-center">3</div>
-                    <p>{ranking[2].nombre}</p>
-                    <span>{ranking[2].score}</span>
-                  </motion.div>
+                  <div>
+                    <div className="bg-[#B9985A] h-20 w-20 rounded-t-2xl flex items-center justify-center text-white font-bold">
+                      3
+                    </div>
+                    <p className="text-[#2F3624] mt-2">{ranking[2].nombre}</p>
+                    <span className="text-[#6F7756]">{ranking[2].score}</span>
+                  </div>
                 )}
-
               </div>
 
-              <button
+              <motion.button
                 onClick={guardarResultado}
-                className="px-6 py-2 bg-green-500 text-white rounded-full"
+                className="mt-10 bg-[#4F5A35] text-[#F8F4EB] px-8 py-4 rounded-full border border-[#C9A44C]/60 shadow-lg uppercase tracking-[0.25em] text-[11px]"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.97 }}
               >
-                📸 Guardar resultado
-              </button>
-
+                Guardar resultado
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Preguntas;
+}

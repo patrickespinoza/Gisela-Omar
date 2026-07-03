@@ -2,134 +2,118 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-  },
+  hidden: { opacity: 0, y: 55 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 1,
-    },
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
-const Album = () => {
+export default function AlbumCompartido() {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <motion.div
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        className="flex items-center justify-center p-6"
-      >
-        <div className="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 max-w-md w-full text-center space-y-6 text-black relative overflow-hidden">
-          
-          {/* Glow */}
-          <div className="absolute top-[-50px] left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-gradient-to-tr from-[#fcd5b5]/40 via-[#f9e1d1]/20 to-transparent rounded-full blur-3xl animate-pulse -z-10"></div>
+      <section className="relative overflow-hidden bg-[#4F5A35] px-5 py-24 sm:py-32">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#6F7756] via-[#4F5A35] to-[#252B1E]" />
 
-          <h1 className="text-3xl sm:text-4xl font-bold font-playfair tracking-wide">
-            ÁLBUM COMPARTIDO
-          </h1>
-
-          <div className="w-20 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#9E8E7B] to-transparent rounded-full"></div>
-
-          <p className="text-lg sm:text-2xl font-[DancingScript]">
-            Sube tus fotos del evento y revive cada momento especial junto a nosotros
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
+          className="relative z-10 mx-auto max-w-4xl text-center"
+        >
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
+            Comparte tus recuerdos
           </p>
 
-          {/* BOTÓN */}
-          <button
-            onClick={() => setOpen(true)}
-            className="bg-[#9E8E7B] text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
-          >
-            Ir al Álbum 📸
-          </button>
-        </div>
-      </motion.div>
+          <h2 className="font-cursiveDancing text-[54px] sm:text-[78px] text-[#F8F4EB] leading-none">
+            Álbum Compartido
+          </h2>
 
-      {/* MODAL de Álbum */}
+          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6 mb-12" />
+
+          <div className="relative bg-[#F8F4EB] rounded-[36px] border border-[#C9A44C]/50 shadow-[0_35px_100px_rgba(0,0,0,0.35)] p-8 sm:p-12 overflow-hidden">
+            <p className="font-serif text-[17px] sm:text-[21px] leading-relaxed text-[#2F3624]">
+              Sube tus fotos del evento y revive cada momento especial junto a nosotros.
+            </p>
+
+            <motion.button
+              onClick={() => setOpen(true)}
+              className="mt-10 bg-[#4F5A35] text-[#F8F4EB] px-8 py-4 rounded-full border border-[#C9A44C]/60 shadow-lg uppercase tracking-[0.25em] text-[11px]"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Ir al Álbum
+            </motion.button>
+          </div>
+        </motion.div>
+      </section>
+
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50 px-4"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[999] px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
           >
             <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: 40 }}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.86, opacity: 0, y: 35 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 40 }}
+              exit={{ scale: 0.86, opacity: 0, y: 35 }}
               transition={{ duration: 0.4 }}
-              className="relative bg-white rounded-[2rem] p-8 max-w-md w-full text-center space-y-6 shadow-[0_25px_80px_rgba(0,0,0,0.3)] overflow-hidden"
+              className="relative bg-[#F8F4EB] rounded-[34px] border border-[#C9A44C]/50 p-7 sm:p-9 max-w-md w-full text-center shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
             >
-              
-              {/* Glow interno */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#fcd5b5]/30 via-transparent to-[#f9e1d1]/20 rounded-[2rem] blur-2xl -z-10"></div>
-
-              {/* Cerrar */}
               <button
                 onClick={() => setOpen(false)}
-                className="absolute top-4 right-5 text-gray-400 hover:text-black text-xl transition"
+                className="absolute top-5 right-6 text-[#4F5A35]/70 hover:text-[#4F5A35] text-xl"
               >
                 ✕
               </button>
 
-              {/* Título */}
-              <h2 className="text-2xl font-playfair font-semibold text-[#7f5b45]">
-                Nuestro Álbum 📸
+              <h2 className="font-cursiveDancing text-[44px] text-[#4F5A35] leading-none">
+                Nuestro Álbum
               </h2>
 
-              {/* Línea */}
-              <div className="w-20 h-[2px] mx-auto bg-gradient-to-r from-transparent via-[#9E8E7B] to-transparent"></div>
+              <div className="w-24 h-[1px] mx-auto bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent my-6" />
 
-              {/* App */}
-              <p className="text-gray-600">
+              <p className="text-[#5B6247]">
                 Aplicación:
-                <span className="block font-semibold text-[#9E8E7B] mt-1">
+                <span className="block font-semibold text-[#4F5A35] mt-1">
                   Wedshoots
                 </span>
               </p>
 
-              {/* Botón app */}
               <a
                 href="https://apps.apple.com/mx/app/wedshoots/id660256196"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block px-6 py-2 rounded-full border border-[#9E8E7B] text-[#9E8E7B] hover:bg-[#9E8E7B] hover:text-white transition"
+                className="inline-block mt-5 px-6 py-2 rounded-full border border-[#C9A44C]/70 text-[#4F5A35] hover:bg-[#4F5A35] hover:text-[#F8F4EB] transition"
               >
                 Descargar App
               </a>
 
-              {/* Código */}
-              <div className="space-y-2">
-                <p className="text-gray-500 text-sm">
-                  Código del álbum
-                </p>
+              <div className="mt-8 space-y-2">
+                <p className="text-[#6F7756] text-sm">Código del álbum</p>
 
-                <div className="bg-[#f8f5f2] rounded-xl py-3 px-4 font-mono text-lg tracking-[0.3em] text-[#7f5b45] shadow-inner">
+                <div className="bg-white rounded-xl py-3 px-4 font-mono text-lg tracking-[0.3em] text-[#4F5A35] shadow-inner">
                   MXat19tb26
                 </div>
               </div>
 
-              {/* QR */}
-              <div className="flex justify-center">
-                <div className="p-3 bg-white rounded-2xl shadow-lg border border-gray-200">
-                  <img
-                    src="/qr.png"
-                    alt="QR"
-                    className="w-40 h-40 rounded-lg"
-                  />
+              <div className="flex justify-center mt-8">
+                <div className="p-3 bg-white rounded-2xl shadow-lg border border-[#C9A44C]/35">
+                  <img src="/qr.png" alt="QR" className="w-40 h-40 rounded-lg" />
                 </div>
               </div>
 
-              <p className="text-xs text-gray-400">
-                Escanea el código o usa la app para subir tus fotos ✨
+              <p className="mt-6 text-xs text-[#5B6247]">
+                Escanea el código o usa la app para subir tus fotos.
               </p>
             </motion.div>
           </motion.div>
@@ -137,6 +121,4 @@ const Album = () => {
       </AnimatePresence>
     </>
   );
-};
-
-export default Album;
+}
