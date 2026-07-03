@@ -45,7 +45,7 @@ export default function Portada() {
   return (
     <div className="relative w-full overflow-hidden bg-black text-white">
       <audio ref={audioRef} loop playsInline preload="auto">
-  <source src="/TylerShaw.mp3" type="audio/mpeg" />
+  <source src="/musica.mp3" type="audio/mpeg" />
 </audio>
 
       <AnimatePresence>
@@ -431,59 +431,86 @@ export default function Portada() {
       </AnimatePresence>
 
       {/* CONTENIDO DESPUÉS DE ABRIR */}
-      <section className="relative w-full min-h-screen overflow-hidden">
-        <motion.img
-          src="/starwars-bg.jpg"
-          alt=""
-          className="
-            absolute inset-0
-            w-full h-full
-            object-cover
-            object-[center_16%]
-            md:object-center
-            select-none pointer-events-none
-          "
-          draggable={false}
-          initial={{ opacity: 0, scale: 1.08 }}
-          animate={mostrarContenido ? { opacity: 1, scale: 1 } : { opacity: 0 }}
-          transition={{ duration: 1.3, ease: "easeOut" }}
-        />
+<section className="relative w-full min-h-[100dvh] overflow-hidden bg-black">
+  <motion.img
+  src="/portada.JPG"
+  alt=""
+  className="
+    absolute inset-0
+    w-full h-full
 
-        <div className="absolute inset-0 bg-black/45" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-black/85" />
+    object-cover
+    object-[center_10%]
 
-        <motion.div
-          className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-4 py-20"
-          initial={{ opacity: 0, y: 35 }}
-          animate={mostrarContenido ? { opacity: 1, y: 0 } : { opacity: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        >
-          <p className="text-[11px] sm:text-sm tracking-[0.45em] uppercase text-[#F3DFB3] mb-5">
-            Nuestra Boda
-          </p>
+    md:object-cover
+    md:object-[center_38%]
 
-          <h1
-            className="text-[48px] sm:text-[72px] md:text-[100px] leading-none font-cursiveDancing"
-            style={{
-              background:
-                "linear-gradient(180deg, #FFFFFF 0%, #F3DFB3 42%, #C9A44C 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              textShadow: "0 8px 35px rgba(0,0,0,0.75)",
-            }}
-          >
-            Gisela & Omar
-          </h1>
+    lg:object-[center_34%]
 
-          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent my-7" />
+    xl:object-[center_32%]
 
-          <p className="text-[12px] sm:text-base tracking-[0.35em] uppercase text-[#F8F4EB] mb-8">
-            10 • Octubre • 2026
-          </p>
+    select-none
+    pointer-events-none
+  "
+  draggable={false}
+  initial={{ opacity: 0, scale: 1.03 }}
+  animate={mostrarContenido ? { opacity: 1, scale: 1 } : { opacity: 0 }}
+  transition={{ duration: 1.3, ease: "easeOut" }}
+/>
 
-          <Countdown targetDate="2026-10-10T00:00:00" />
-        </motion.div>
-      </section>
+  <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
+  <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/90" />
+
+  <motion.div
+    className="
+  relative z-10
+  min-h-[100dvh]
+
+  flex
+  flex-col
+  items-center
+
+  justify-end
+
+  text-center
+
+  px-6
+
+  pb-10
+  sm:pb-14
+  md:pb-20
+  lg:pb-24
+"
+    initial={{ opacity: 0, y: 35 }}
+    animate={mostrarContenido ? { opacity: 1, y: 0 } : { opacity: 0 }}
+    transition={{ duration: 1.2, delay: 0.3 }}
+  >
+    <p className="text-[10px] sm:text-sm tracking-[0.42em] uppercase text-[#F3DFB3] mb-4">
+      Nuestra Boda
+    </p>
+
+    <h1
+      className="text-[44px] sm:text-[70px] md:text-[96px] leading-none font-cursiveDancing"
+      style={{
+        background:
+          "linear-gradient(180deg, #FFFFFF 0%, #F3DFB3 42%, #C9A44C 100%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        textShadow: "0 8px 35px rgba(0,0,0,0.75)",
+      }}
+    >
+      Gisela & Omar
+    </h1>
+
+    <div className="w-28 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent my-5 md:my-7" />
+
+    <p className="text-[11px] sm:text-base tracking-[0.3em] md:tracking-[0.35em] uppercase text-[#F8F4EB] mb-6 md:mb-8">
+      10 • Octubre • 2026
+    </p>
+
+    <Countdown targetDate="2026-10-10T00:00:00" />
+  </motion.div>
+</section>
     </div>
   );
 }

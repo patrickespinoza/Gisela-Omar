@@ -109,277 +109,106 @@ export default function PaginaPrincipal() {
     }}
   />
 
-  {/* CONTENIDO */}
-  <div className="relative z-10 max-w-6xl mx-auto text-center">
-
-    {/* SUBTITULO */}
-    <motion.p
-      className="uppercase text-[11px] tracking-[0.55em]"
-      style={{
-        color: "#9b7b52",
-      }}
-      animate={{
-        letterSpacing: ["0.45em", "0.55em", "0.45em"],
-        opacity: [0.7, 1, 0.7],
-      }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
-      NUESTROS MOMENTOS
-    </motion.p>
-
-    {/* TITULO */}
-    <motion.h1
-      className="mt-6 text-[42px] md:text-[72px] leading-none font-cursiveDancing"
-      style={{
-        background: `
-          linear-gradient(
-            180deg,
-            #fffdf8 0%,
-            #f4dfb8 35%,
-            #d4af37 65%,
-            #8f6b1d 100%
-          )
-        `,
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        textShadow: `
-          0 2px 10px rgba(212,175,55,0.12),
-          0 8px 24px rgba(0,0,0,0.08)
-        `,
-      }}
-      animate={{
-        opacity: [0.92, 1, 0.92],
-      }}
-      transition={{
-        duration: 4,
-        repeat: Infinity,
-      }}
-    >
-      Nuestra Historia
-    </motion.h1>
-
-    {/* DETALLE */}
-    <motion.div
-      className="relative flex justify-center items-center my-10"
-      animate={{
-        opacity: [0.7, 1, 0.7],
-      }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-      }}
-    >
-
-      <motion.div
-        className="h-[1px]"
-        style={{
-          width: "90px",
-          background:
-            "linear-gradient(to right, transparent, rgba(180,140,80,0.7))",
-        }}
-        animate={{
-          width: ["70px", "95px", "70px"],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-        }}
-      />
-
-      <motion.div
-        className="relative mx-5"
-        animate={{
-          rotate: [0, 4, -4, 0],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-        }}
-      >
-
-        <div className="absolute inset-0 blur-xl bg-[#d4af37]/20 scale-150 rounded-full" />
-
-        <div
-          className="relative w-3 h-3 rotate-45"
-          style={{
-            background: `
-              linear-gradient(
-                135deg,
-                #d4af37 0%,
-                #b38728 45%,
-                #7a5a16 100%
-              )
-            `,
-          }}
-        />
-      </motion.div>
-
-      <motion.div
-        className="h-[1px]"
-        style={{
-          width: "90px",
-          background:
-            "linear-gradient(to left, transparent, rgba(180,140,80,0.7))",
-        }}
-        animate={{
-          width: ["70px", "95px", "70px"],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-        }}
-      />
-
-    </motion.div>
-
-    {/* TEXTO */}
-    <motion.p
-      className="max-w-2xl mx-auto text-[15px] md:text-[17px] leading-relaxed"
-      style={{
-        color: "#6f5a40",
-      }}
-      animate={{
-        opacity: [0.75, 1, 0.75],
-      }}
-      transition={{
-        duration: 5,
-        repeat: Infinity,
-      }}
-    >
-      Un recorrido por los momentos más especiales
-      que han marcado nuestra historia juntos.
-    </motion.p>
-
-    {/* CARD CARRUSEL */}
-    <motion.div
-      className="relative mt-20 rounded-[40px] overflow-hidden p-5 md:p-8"
-      style={{
-        background: `
-          linear-gradient(
-            145deg,
-            rgba(255,255,255,0.72),
-            rgba(255,255,255,0.35)
-          )
-        `,
-        backdropFilter: "blur(18px)",
-        border: "1px solid rgba(255,255,255,0.4)",
-        boxShadow: `
-          0 25px 60px rgba(0,0,0,0.12),
-          inset 0 1px 0 rgba(255,255,255,0.6)
-        `,
-      }}
-      animate={{
-        y: [0, -6, 0],
-      }}
-      transition={{
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-    >
-
-      {/* BRILLO */}
-      <div
-        className="absolute top-0 left-0 w-28 h-full opacity-10"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(255,255,255,0.9), transparent)",
-          transform: "skewX(-20deg)",
-        }}
-      />
-
-      {/* BORDE */}
-      <div className="absolute inset-[10px] rounded-[30px] border border-white/30 pointer-events-none" />
-
-      {/* CARRUSEL */}
-      <div className="relative z-10">
-        <Carousel />
-      </div>
-
-    </motion.div>
-
-  </div>
+  {/* GALERÍA */}
+<motion.section
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+  viewport={{ once: true, amount: 0.2 }}
+  className="relative overflow-hidden bg-[#4F5A35]"
+>
+  <Carousel />
+</motion.section>
 
 </motion.section>
 
 {/* Seccion de Itinerario  */}
-<div className="bg-white rounded-3xl shadow-xl p-4 sm:p-6 flex justify-center">
-  <div className="w-full max-w-xl">
     <Itinerario />
-  </div>
-</div>
-
-{/* Seccion de Frase  */}
- <motion.div
+  
+{/* SECCIÓN IMAGEN ESPECIAL */}
+<motion.section
   variants={fadeUp}
   initial="hidden"
   whileInView="show"
-  viewport={{ once: true }}
-  className="relative flex flex-col items-center justify-center text-center py-36 px-6 overflow-hidden bg-gradient-to-b from-[#fdfaf6] via-[#fbf6f2] to-[#fffefb]"
+  viewport={{ once: true, amount: 0.25 }}
+  className="relative overflow-hidden bg-[#4F5A35] py-24 sm:py-32"
 >
+  <div className="absolute inset-0 bg-gradient-to-b from-[#6F7756] via-[#4F5A35] to-[#252B1E]" />
 
-  {/* Glow de fondo ultra premium */}
-  <div className="absolute w-[700px] h-[700px] bg-gradient-to-tr from-[#f5d185]/30 via-[#9e8e7b]/20 to-[#ffffff]/0 rounded-full blur-3xl animate-pulse top-[-150px] left-[-100px]"></div>
-  <div className="absolute w-[500px] h-[500px] bg-gradient-to-br from-[#facf91]/20 to-[#fdf6e3]/0 rounded-full blur-2xl bottom-[-120px] right-[-80px] animate-pulse"></div>
+  <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_center,#ffffff_1px,transparent_1px)] [background-size:24px_24px]" />
 
-  {/* Resplandor radial detrás del texto */}
-  <div className="absolute w-[600px] h-[600px] bg-pink-100/20 rounded-full blur-3xl animate-pulse top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+  <motion.div
+    className="absolute left-1/2 top-1/2 w-[760px] h-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#C9A44C]/20 blur-3xl"
+    animate={{
+      scale: [1, 1.12, 1],
+      opacity: [0.15, 0.32, 0.15],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
 
-  {/* Partículas flotantes */}
-  <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-    {Array.from({ length: 10 }).map((_, i) => (
-      <div
-        key={i}
-        className="absolute bg-red-400/75 rounded-full blur-sm"
-        style={{
-          width: `${Math.random() * 6 + 2}px`,
-          height: `${Math.random() * 6 + 2}px`,
-          top: `${Math.random() * 100}%`,
-          left: `${Math.random() * 100}%`,
-          animation: `float${i} ${Math.random() * 10 + 5}s ease-in-out infinite alternate`
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 text-center">
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+      className="mb-12"
+    >
+      <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
+        Una historia de amor
+      </p>
+
+      <h2 className="font-cursiveDancing text-[54px] sm:text-[78px] md:text-[92px] text-[#F8F4EB] leading-none">
+        Para Siempre
+      </h2>
+
+      <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6" />
+    </motion.div>
+
+    <motion.div
+      className="relative mx-auto w-full max-w-6xl"
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+    >
+      <div className="absolute -inset-4 sm:-inset-6 border border-[#C9A44C]/35 rounded-[36px] sm:rounded-tl-[90px] sm:rounded-br-[90px]" />
+
+      <div className="absolute -top-10 left-1/2 w-[70%] h-[1px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent" />
+
+      <div className="absolute -bottom-10 left-1/2 w-[70%] h-[1px] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent" />
+
+      <motion.img
+        src="/imagenfinal.JPG"
+        alt="Imagen especial"
+        className="
+          relative z-10
+          w-full
+          max-h-[820px]
+          object-contain
+          rounded-[28px]
+          sm:rounded-tl-[80px]
+          sm:rounded-br-[80px]
+          shadow-[0_35px_100px_rgba(0,0,0,0.38)]
+          select-none
+          pointer-events-none
+        "
+        draggable={false}
+        animate={{ y: [0, -8, 0] }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: "easeInOut",
         }}
-      ></div>
-    ))}
+      />
+    </motion.div>
   </div>
+</motion.section>
 
-  {/* Contenido */}
-  <div className="relative z-10 max-w-3xl">
-
-    <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[GreatVibes] bg-clip-text text-transparent bg-gradient-to-r from-[#7f5b45] via-[#d18f81] to-[#a08428] leading-snug mb-4 drop-shadow-xl">
-      "Sea cual sea la materia de que estan hechas
-    </p>
-    <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[GreatVibes] bg-clip-text text-transparent bg-gradient-to-r from-[#9d7155] via-[#c1897c] to-[#a08428] leading-snug mb-4 drop-shadow-xl">
-      nuestras almas
-    </p>
-    <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[GreatVibes] bg-clip-text text-transparent bg-gradient-to-r from-[#b27d5c] via-[#a9776c] to-[#a08428] leading-snug mb-12 drop-shadow-xl">
-      la suya y la mia son iguales."
-    </p>
-
-    {/* Línea central elegante */}
-    <div className="w-48 h-[2px] bg-gradient-to-r from-transparent via-[#E9CFC9] to-transparent mx-auto mb-8 rounded-full shadow-lg"></div>
-
-    <p className="text-sm sm:text-base tracking-[0.4em] text-[#9c713b] uppercase font-semibold drop-shadow-md">
-      - Emily Bronte
-    </p>
-  </div>
-
-  {/* Animación de partículas */}
-  <style jsx>{`
-    ${Array.from({ length: 30 }).map((_, i) => `
-      @keyframes float${i} {
-        0% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
-        50% { transform: translateY(-20px) translateX(10px); opacity: 0.6; }
-        100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
-      }
-    `).join('')}
-  `}</style>
-
-</motion.div>
 
 
    {/* Sección de Vestimenta */}

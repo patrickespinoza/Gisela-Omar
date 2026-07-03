@@ -16,7 +16,7 @@ const Regalos = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
 
   // 🎁 Número de evento Liverpool
-  const numeroEvento = "12345678";
+  const numeroEvento = "52006709";
 
   // 🔗 Link dinámico Liverpool
   const linkLiverpool = `https://www.liverpool.com.mx/tienda/giftregistry/giftRegistryDetail.jsp?eventNo=${numeroEvento}`;
