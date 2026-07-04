@@ -94,7 +94,7 @@ export default function FrasePremium() {
             ease: "easeInOut",
           }}
         >
-          El enamoramiento es el camino al lado del amor:
+          El enamoramiento es el camino al lado del amor,
           <br className="hidden sm:block" />
           el enamoramiento lleva a la pasión.
           <br />

@@ -98,7 +98,7 @@ export default function AlbumCompartido() {
                 Descargar App
               </a>
 
-              <div className="mt-6 space-y-2">
+              <div className="mt-4 space-y-2">
                 <p className="text-[#6F7756] text-sm">Código del álbum</p>
 
                 <div className="bg-white rounded-xl py-3 px-4 font-mono text-lg tracking-[0.3em] text-[#4F5A35] shadow-inner">
@@ -106,7 +106,7 @@ export default function AlbumCompartido() {
                 </div>
               </div>
 
-              <div className="flex justify-center mt-6">
+              <div className="flex justify-center mt-4">
                 <div className="p-3 bg-white rounded-2xl shadow-lg border border-[#C9A44C]/35">
                   <img src="/QR.JPG" alt="QR" className="w-40 h-40 rounded-lg" />
                 </div>
