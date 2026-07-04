@@ -112,19 +112,19 @@ export default function AlbumCompartido() {
                 </div>
               </div>
 
-              <p className="mt-6 text-lg text-[#5B6247]">
+              <p className="mt-1 text-lg text-[#5B6247]">
                 Entra a la App de Wedshoots
               </p>
-              <p className="mt-6 text-lg text-[#5B6247]">
+              <p className="mt-1 text-lg text-[#5B6247]">
                 1.- Seleccion mis albumes
               </p>
-              <p className="mt-6 text-lg text-[#5B6247]">
+              <p className="mt-1 text-lg text-[#5B6247]">
                 2.- Selecciona Unirse a un boda
               </p>
-              <p className="mt-6 text-lg text-[#5B6247]">
+              <p className="mt-1 text-lg text-[#5B6247]">
                 3.- Escanea el código o ingresa el codigo 
               </p>
-              <p className="mt-6 text-xl text-[#5B6247]">
+              <p className="mt-1 text-xl text-[#5B6247]">
                 usa la app para subir tus fotos.
               </p>
             </motion.div>
