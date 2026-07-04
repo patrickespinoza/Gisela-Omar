@@ -431,56 +431,53 @@ export default function Portada() {
       </AnimatePresence>
 
       {/* CONTENIDO DESPUÉS DE ABRIR */}
-<section className="relative w-full min-h-[100dvh] overflow-hidden bg-black">
+<section className="relative w-full h-[100svh] md:h-screen overflow-hidden bg-black">
   <motion.img
-  src="/portada.JPG"
-  alt=""
-  className="
-    absolute inset-0
-    w-full h-full
+    src="/portada.JPG"
+    alt=""
+    className="
+      absolute inset-0
+      w-full h-full
 
-    object-cover
-    object-[center_10%]
+      object-cover
+      object-[center_10%]
 
-    md:object-cover
-    md:object-[center_38%]
+      md:object-cover
+      md:object-[center_38%]
 
-    lg:object-[center_34%]
+      lg:object-[center_34%]
+      xl:object-[center_32%]
 
-    xl:object-[center_32%]
-
-    select-none
-    pointer-events-none
-  "
-  draggable={false}
-  initial={{ opacity: 0, scale: 1.03 }}
-  animate={mostrarContenido ? { opacity: 1, scale: 1 } : { opacity: 0 }}
-  transition={{ duration: 1.3, ease: "easeOut" }}
-/>
+      select-none
+      pointer-events-none
+    "
+    draggable={false}
+    initial={{ opacity: 0 }}
+    animate={mostrarContenido ? { opacity: 1 } : { opacity: 0 }}
+    transition={{ duration: 1.3, ease: 'easeOut' }}
+  />
 
   <div className="absolute inset-0 bg-black/30 md:bg-black/20" />
   <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/90" />
 
   <motion.div
     className="
-  relative z-10
-  min-h-[100dvh]
+      relative z-10
+      h-full
 
-  flex
-  flex-col
-  items-center
+      flex
+      flex-col
+      items-center
+      justify-end
 
-  justify-end
+      text-center
+      px-6
 
-  text-center
-
-  px-6
-
-  pb-10
-  sm:pb-14
-  md:pb-20
-  lg:pb-24
-"
+      pb-10
+      sm:pb-14
+      md:pb-20
+      lg:pb-24
+    "
     initial={{ opacity: 0, y: 35 }}
     animate={mostrarContenido ? { opacity: 1, y: 0 } : { opacity: 0 }}
     transition={{ duration: 1.2, delay: 0.3 }}
