@@ -55,14 +55,15 @@ const Regalos = ({
         viewport={{ once: true, amount: 0.25 }}
         className="relative z-10 mx-auto max-w-6xl text-center"
       >
-        <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
-          Con cariño
-        </p>
 
         <h2 className="font-cursiveDancing text-[54px] sm:text-[78px] md:text-[92px] text-[#F8F4EB] leading-none">
           Regalos
         </h2>
 
+        <p className="text-[10px] sm:text-xs uppercase tracking-[0.55em] text-[#E6D3A3] mb-4">
+          Con cariño
+        </p>
+        
         <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6 mb-9" />
 
         <p className="font-serif text-[16px] sm:text-[20px] leading-relaxed text-[#F8F4EB]/90 max-w-3xl mx-auto mb-14">
