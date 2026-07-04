@@ -13,15 +13,13 @@ const fadeUp = {
 const Regalos = ({
   eventoLiverpool = "52006709",
   banco = "BBVA",
-  titular = "Nombre del titular",
-  cuenta = "0000000000",
-  clabe = "000000000000000000",
-  tarjeta = "0000 0000 0000 0000",
+  titular = "Omar Venegas Gutiérrez",
+  clabe = "012 420 01534229561 5",
 }) => {
   const [modalActivo, setModalActivo] = useState(null);
   const [copiado, setCopiado] = useState(false);
 
-  const linkLiverpool = `https://www.liverpool.com.mx/tienda/giftregistry/giftRegistryDetail.jsp?eventNo=${eventoLiverpool}`;
+  const linkLiverpool = `https://mesaderegalos.liverpool.com.mx/milistaderegalos/52006709`;
 
   const copiarClabe = async () => {
     await navigator.clipboard.writeText(clabe);
@@ -239,9 +237,7 @@ const Regalos = ({
 
                   <div className="space-y-5 text-left">
                     <Dato label="Titular" value={titular} />
-                    <Dato label="Cuenta" value={cuenta} />
                     <Dato label="CLABE" value={clabe} mono />
-                    <Dato label="Tarjeta" value={tarjeta} mono />
                   </div>
 
                   <motion.button

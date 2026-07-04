@@ -46,10 +46,10 @@ export default function PaginaPrincipal() {
   return (
     <div >
 
-<FrasePremium/>
 
 <NoviosPadres/>
-{/* Direccion del evento*/}
+
+<FrasePremium/>
 
 <EventoDireccion/>
 
@@ -122,26 +122,14 @@ export default function PaginaPrincipal() {
 
 </motion.section>
 
-{/* Seccion de Itinerario  */}
+
     <Itinerario />
-
-
-   {/* Sección de Vestimenta */}
 
  <DressCodePremium/>
 
- {/* Sección de Album Compartido */}
-
  <Album/>
-
-{/* Sección de Cuanto nos conoces */}
-
-    <Preguntas/>
   
-     
-
- {/* Sección de Regalos */}
-    <Regalos/>
+ <Regalos/>
  
      
 
@@ -175,7 +163,7 @@ export default function PaginaPrincipal() {
     <div className="w-24 h-[2px] bg-[#9E8E7B] mt-6"></div>
 
     {/* Texto opcional elegante */}
-    <p className="text-white mt-4 text-lg font-cursiveDancing opacity-90">
+    <p className="text-white mt-4 text-5xl font-cursiveDancing opacity-90">
       ¡Te esperamos!
     </p>
 

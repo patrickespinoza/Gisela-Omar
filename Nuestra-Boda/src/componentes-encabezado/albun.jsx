@@ -102,18 +102,30 @@ export default function AlbumCompartido() {
                 <p className="text-[#6F7756] text-sm">Código del álbum</p>
 
                 <div className="bg-white rounded-xl py-3 px-4 font-mono text-lg tracking-[0.3em] text-[#4F5A35] shadow-inner">
-                  MXat19tb26
+                  MX37d1f8f3
                 </div>
               </div>
 
               <div className="flex justify-center mt-8">
                 <div className="p-3 bg-white rounded-2xl shadow-lg border border-[#C9A44C]/35">
-                  <img src="/qr.png" alt="QR" className="w-40 h-40 rounded-lg" />
+                  <img src="/QR.JPG" alt="QR" className="w-40 h-40 rounded-lg" />
                 </div>
               </div>
 
-              <p className="mt-6 text-xs text-[#5B6247]">
-                Escanea el código o usa la app para subir tus fotos.
+              <p className="mt-6 text-lg text-[#5B6247]">
+                Entra a la App de Wedshoots
+              </p>
+              <p className="mt-6 text-lg text-[#5B6247]">
+                1.- Seleccion mis albumes
+              </p>
+              <p className="mt-6 text-lg text-[#5B6247]">
+                2.- Selecciona Unirse a un boda
+              </p>
+              <p className="mt-6 text-lg text-[#5B6247]">
+                3.- Escanea el código o ingresa el codigo 
+              </p>
+              <p className="mt-6 text-xl text-[#5B6247]">
+                usa la app para subir tus fotos.
               </p>
             </motion.div>
           </motion.div>

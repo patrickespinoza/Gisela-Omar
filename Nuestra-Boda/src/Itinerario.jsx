@@ -128,7 +128,7 @@ export default function ItinerarioTimelinePremium() {
                       {evento.titulo}
                     </p>
 
-                    <h3 className="font-cursiveDancing text-[15px] sm:text-[30px] text-[#4F5A35] leading-none mb-3">
+                    <h3 className="font-cursiveDancing text-[25px] sm:text-[30px] text-[#4F5A35] leading-none mb-3">
                       {evento.lugar}
                     </h3>
 

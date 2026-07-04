@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 55 },
@@ -11,9 +11,14 @@ const fadeUp = {
 };
 
 const SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxklU9PTlqxkcu9pBUfWYhByQZ_7kJWuFENeeQhlEW-C6eh2cVbTK3z2AbMJiWVL1ME/exec";
+  "https://script.google.com/macros/s/AKfycbzpb4DkHNpdA5ByILOSwqb36lhm8yUu80Z5G94Z1ayTj449HHQd2H-Xg_foJAepxOPz/exec";
+
+// Cambia este número por el WhatsApp que recibirá las confirmaciones.
+// Formato recomendado: 52 + lada + número, sin espacios.
+const WHATSAPP_NUMBER = "527224000628";
 
 const Confirmacion = () => {
+  const [pasesAsignados, setPasesAsignados] = useState(1);
   const [nombreInvitado, setNombreInvitado] = useState("");
   const [mensajeInvitado, setMensajeInvitado] = useState("");
   const [asistencia, setAsistencia] = useState("");
@@ -33,11 +38,20 @@ const Confirmacion = () => {
     setLoading(true);
 
     const data = {
-      nombre: nombreInvitado,
+      nombre: nombreInvitado.trim(),
       asistencia,
       invitados,
-      mensaje: mensajeInvitado,
+      mensaje: mensajeInvitado.trim(),
     };
+
+    const mensajeWhatsApp = `
+Hola, quiero confirmar mi asistencia a la boda de Gisela & Omar.
+
+Nombre: ${data.nombre}
+Asistencia: ${data.asistencia}
+Número de invitados: ${data.invitados}
+Mensaje: ${data.mensaje || "Sin mensaje"}
+    `.trim();
 
     try {
       await fetch(SCRIPT_URL, {
@@ -48,6 +62,12 @@ const Confirmacion = () => {
         },
         body: JSON.stringify(data),
       });
+
+      const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        mensajeWhatsApp
+      )}`;
+
+      window.open(whatsappURL, "_blank");
 
       setEnviado(true);
       setNombreInvitado("");
@@ -65,7 +85,37 @@ const Confirmacion = () => {
       setLoading(false);
     }
   };
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
 
+  if (id) {
+    try {
+      const reverse = atob(decodeURIComponent(id));
+      const json = reverse.split("").reverse().join("");
+      const datos = JSON.parse(json);
+
+      if (datos.nombre) setNombreInvitado(datos.nombre);
+      if (datos.pases) {
+        setPasesAsignados(Number(datos.pases));
+        setInvitados(1);
+      }
+    } catch (error) {
+      console.error("ID inválido:", error);
+    }
+
+    return;
+  }
+
+  const nombre = params.get("nombre");
+  const cantidad = params.get("pases");
+
+  if (nombre) setNombreInvitado(nombre);
+  if (cantidad) {
+    setPasesAsignados(Number(cantidad));
+    setInvitados(1);
+  }
+}, []);
   return (
     <section className="relative overflow-hidden bg-[#4F5A35] px-5 py-24 sm:py-32">
       <div className="absolute inset-0 bg-gradient-to-b from-[#6F7756] via-[#4F5A35] to-[#252B1E]" />
@@ -101,9 +151,8 @@ const Confirmacion = () => {
 
         <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto mt-6 mb-10" />
 
-        <p className="font-serif text-[16px] sm:text-[20px] leading-relaxed text-[#F8F4EB]/90 max-w-2xl mx-auto mb-12">
-          Será un honor contar con tu presencia en este día tan especial. Por
-          favor, ayúdanos confirmando tu asistencia.
+        <p className="font-serif text-[20px] sm:text-[30px] leading-relaxed text-[#F8F4EB]/90 max-w-2xl mx-auto mb-12">
+          Te agradecemos que nos confirmes tu asistencia antes del día 20 de agosto
         </p>
 
         <motion.div
@@ -131,24 +180,15 @@ const Confirmacion = () => {
               </label>
 
               <input
-                type="text"
-                placeholder="Escribe tu nombre"
-                value={nombreInvitado}
-                onChange={(e) => setNombreInvitado(e.target.value)}
-                className="
-                  w-full
-                  rounded-2xl
-                  border border-[#C9A44C]/40
-                  bg-white
-                  px-5 py-4
-                  text-[#2F3624]
-                  outline-none
-                  focus:border-[#4F5A35]
-                  focus:ring-2
-                  focus:ring-[#4F5A35]/15
-                  transition
-                "
-              />
+  type="text"
+  value={nombreInvitado}
+  readOnly
+  className="
+    w-full rounded-2xl border border-[#C9A44C]/40 bg-white/80
+    px-5 py-4 text-[#2F3624] outline-none
+    cursor-not-allowed
+  "
+/>
             </div>
 
             <div>
@@ -171,32 +211,21 @@ const Confirmacion = () => {
               </div>
             </div>
 
-            <div>
-              <label className="block text-[10px] uppercase tracking-[0.35em] text-[#6F7756] mb-3">
-                Número de invitados
-              </label>
-
-              <input
-                type="number"
-                min="1"
-                value={invitados}
-                onChange={(e) => setInvitados(Number(e.target.value))}
-                className="
-                  w-full
-                  rounded-2xl
-                  border border-[#C9A44C]/40
-                  bg-white
-                  px-5 py-4
-                  text-center
-                  text-[#2F3624]
-                  outline-none
-                  focus:border-[#4F5A35]
-                  focus:ring-2
-                  focus:ring-[#4F5A35]/15
-                  transition
-                "
-              />
-            </div>
+            <select
+  value={invitados}
+  onChange={(e) => setInvitados(Number(e.target.value))}
+  className="
+    w-full rounded-2xl border border-[#C9A44C]/40 bg-white
+    px-5 py-4 text-center text-[#2F3624] outline-none
+    focus:border-[#4F5A35] focus:ring-2 focus:ring-[#4F5A35]/15 transition
+  "
+>
+  {Array.from({ length: pasesAsignados }, (_, i) => i + 1).map((num) => (
+    <option key={num} value={num}>
+      {num} {num === 1 ? "invitado" : "invitados"}
+    </option>
+  ))}
+</select>
 
             <div>
               <label className="block text-[10px] uppercase tracking-[0.35em] text-[#6F7756] mb-3">
@@ -209,18 +238,9 @@ const Confirmacion = () => {
                 onChange={(e) => setMensajeInvitado(e.target.value)}
                 rows="4"
                 className="
-                  w-full
-                  resize-none
-                  rounded-2xl
-                  border border-[#C9A44C]/40
-                  bg-white
-                  px-5 py-4
-                  text-[#2F3624]
-                  outline-none
-                  focus:border-[#4F5A35]
-                  focus:ring-2
-                  focus:ring-[#4F5A35]/15
-                  transition
+                  w-full resize-none rounded-2xl border border-[#C9A44C]/40 bg-white
+                  px-5 py-4 text-[#2F3624] outline-none
+                  focus:border-[#4F5A35] focus:ring-2 focus:ring-[#4F5A35]/15 transition
                 "
               />
             </div>
@@ -257,13 +277,9 @@ const Confirmacion = () => {
                 disabled={loading}
                 className={`
                   relative inline-flex items-center justify-center overflow-hidden
-                  w-full sm:w-auto
-                  px-10 py-4
-                  rounded-full
-                  border border-[#C9A44C]/60
-                  text-[#F8F4EB]
-                  shadow-[0_18px_45px_rgba(79,90,53,0.35)]
-                  transition
+                  w-full sm:w-auto px-10 py-4 rounded-full
+                  border border-[#C9A44C]/60 text-[#F8F4EB]
+                  shadow-[0_18px_45px_rgba(79,90,53,0.35)] transition
                   ${
                     loading
                       ? "bg-[#6F7756]/70 cursor-not-allowed"
@@ -289,7 +305,6 @@ const Confirmacion = () => {
                   {loading && (
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   )}
-
                   {loading ? "Enviando" : "Enviar Confirmación"}
                 </span>
               </motion.button>
@@ -307,12 +322,7 @@ function RadioOption({ label, active, onClick }) {
       type="button"
       onClick={onClick}
       className={`
-        flex items-center gap-3
-        rounded-2xl
-        border
-        px-5 py-4
-        text-left
-        transition
+        flex items-center gap-3 rounded-2xl border px-5 py-4 text-left transition
         ${
           active
             ? "border-[#4F5A35] bg-[#4F5A35] text-[#F8F4EB]"

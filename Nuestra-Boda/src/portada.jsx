@@ -13,13 +13,33 @@ export default function Portada() {
   const [pases, setPases] = useState(1);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const nombre = params.get("nombre");
-    const cantidad = params.get("pases");
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
 
-    if (nombre) setInvitados(nombre);
-    if (cantidad) setPases(parseInt(cantidad));
-  }, []);
+  if (id) {
+    try {
+      const reverse = atob(decodeURIComponent(id));
+
+      const json = reverse.split("").reverse().join("");
+
+      const datos = JSON.parse(json);
+
+      if (datos.nombre) setInvitados(datos.nombre);
+      if (datos.pases) setPases(Number(datos.pases));
+    } catch (error) {
+      console.error("ID inválido:", error);
+    }
+
+    return;
+  }
+
+  // Soporte anterior por si todavía abres links viejos
+  const nombre = params.get("nombre");
+  const cantidad = params.get("pases");
+
+  if (nombre) setInvitados(nombre);
+  if (cantidad) setPases(parseInt(cantidad));
+}, []);
 
   const iniciarExperiencia = async () => {
   if (abrirSobre) return;
@@ -64,7 +84,7 @@ export default function Portada() {
           >
             {/* FONDO */}
             <motion.img
-              src="/logoSW.jpg"
+              src="/portada1.jpg"
               alt=""
               className="
                 absolute inset-0
@@ -198,7 +218,7 @@ export default function Portada() {
                   Venegas
                 </p>
 
-                <p className="mt-3 sm:mt-5 text-[9px] sm:text-sm tracking-[0.35em] uppercase text-[#F8F4EB]">
+                <p className="mt-3 sm:mt-5 text-[12px] sm:text-base tracking-[0.35em] uppercase text-[#F8F4EB]">
                   10 • Octubre • 2026
                 </p>
               </motion.div>
