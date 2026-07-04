@@ -80,10 +80,10 @@ export default function NoviosPadres() {
               </p>
 
               <div className="space-y-3">
-                <p className="font-serif text-[20px] sm:text-[24px] text-[#252B1E]">
+                <p className="font-serif text-[17px] sm:text-[24px] text-[#252B1E]">
                   Luisa Guevara Ventura
                 </p>
-                <p className="font-serif text-[20px] sm:text-[24px] text-[#252B1E]">
+                <p className="font-serif text-[17px] sm:text-[24px] text-[#252B1E]">
                   Mauro Villagómez Rendón +
                 </p>
               </div>
@@ -120,7 +120,7 @@ export default function NoviosPadres() {
                 <p className="font-serif text-[17px] sm:text-[24px] text-[#252B1E]">
                   María Laura Gutiérrez Camargo +
                 </p>
-                <p className="font-serif text-[20px] sm:text-[24px] text-[#252B1E]">
+                <p className="font-serif text-[17px] sm:text-[24px] text-[#252B1E]">
                   Rolando Venegas Martínez
                 </p>
               </div>
