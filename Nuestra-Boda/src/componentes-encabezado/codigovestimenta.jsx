@@ -129,9 +129,7 @@ export default function DressCodePremium() {
               </p>
 
               <p className="font-serif text-[16px] sm:text-[19px] leading-relaxed text-[#2F3624]">
-                Aunque adoramos a los más pequeños, hemos decidido celebrar este
-                día en un ambiente reservado para adultos. Gracias por comprender
-                y acompañarnos en este momento tan especial.
+                Aunque adoramos a los más pequeños, nuestra boda será un evento solo para adultos. ¡Esperamos que nos puedan acompañar!
               </p>
             </motion.div>
           </motion.div>
