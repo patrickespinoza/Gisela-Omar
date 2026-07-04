@@ -95,27 +95,7 @@ export default function DressCodePremium() {
               celebración.
             </p>
 
-            <div className="w-28 h-[1px] bg-gradient-to-r from-transparent via-[#C9A44C] to-transparent mx-auto lg:mx-0 my-9" />
-
-            <div className="grid grid-cols-2 gap-5 max-w-md mx-auto lg:mx-0">
-              <div className="rounded-[28px] border border-[#C9A44C]/45 bg-[#F8F4EB]/95 px-5 py-7 text-center shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[#6F7756] mb-3">
-                  Caballeros
-                </p>
-                <p className="font-cursiveDancing text-[32px] text-[#4F5A35]">
-                  Formal
-                </p>
-              </div>
-
-              <div className="rounded-[28px] border border-[#C9A44C]/45 bg-[#F8F4EB]/95 px-5 py-7 text-center shadow-[0_20px_50px_rgba(0,0,0,0.25)]">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[#6F7756] mb-3">
-                  Damas
-                </p>
-                <p className="font-cursiveDancing text-[32px] text-[#4F5A35]">
-                  Formal
-                </p>
-              </div>
-            </div>
+            
 
             <motion.div
               className="mt-12 rounded-[34px] border border-[#C9A44C]/50 bg-[#F8F4EB] px-6 py-8 text-center lg:text-left shadow-[0_25px_70px_rgba(0,0,0,0.25)]"

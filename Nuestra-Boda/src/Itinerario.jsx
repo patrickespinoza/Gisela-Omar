@@ -17,7 +17,6 @@ const eventos = [
   {
     hora: "16:30",
     titulo: "Ceremonia Civil",
-    lugar: "Banquete especial",
     descripcion: "Uniremos nuestras vidas ante la ley, sellando para siempre nuestro compromiso de amor.",
   },
   {
@@ -124,9 +123,12 @@ export default function ItinerarioTimelinePremium() {
 
                   {/* INFO */}
                   <div className="text-center md:text-left">
-                    <p className="text-[25px] uppercase tracking-[0.45em] text-[#C9A44C] mb-3">
-                      {evento.titulo}
-                    </p>
+                    <p
+  className="text-[25px] uppercase tracking-[0.45em] text-[#C9A44C] mb-3 notranslate"
+  translate="no"
+>
+  {evento.titulo}
+</p>
 
                     <h3 className="font-cursiveDancing text-[25px] sm:text-[30px] text-[#4F5A35] leading-none mb-3">
                       {evento.lugar}
